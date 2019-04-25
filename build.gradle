@@ -1,0 +1,58 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'java'
+	id "org.flywaydb.flyway" version "6.0.0-beta"
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.equipment'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	maven { url "http://jcenter.bintray.com" }
+	maven {
+		url "https://plugins.gradle.org/m2/"
+	}}
+
+
+flyway {
+	def props = new Properties()
+	def confFile = "src/main/resources/flyway.conf"
+
+	if (project.hasProperty('profile')) {
+		confFile = "src/main/resources/flyway-${profile}.conf"
+	}
+	file(confFile).withInputStream {
+		stream -> props.load(stream)
+	}
+
+	url = props['flyway.url']
+	user = props['flyway.user']
+	password = props['flyway.password']
+	locations = props['flyway.locations']
+	schemas = [props['flyway.schemas']]
+	locations = props['flyway.locations']
+	baselineOnMigrate = props['flyway.baselineOnMigrate']
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.postgresql:postgresql:9.4-1201-jdbc41'
+	implementation 'io.jsonwebtoken:jjwt:0.7.0'
+	implementation 'io.springfox:springfox-swagger-ui:2.7.0'
+	implementation 'io.springfox:springfox-swagger2:2.7.0'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
