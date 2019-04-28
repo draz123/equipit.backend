@@ -82,5 +82,6 @@ dependencies {
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
 	compileOnly 'org.projectlombok:lombok:1.18.2'
+	compile('org.modelmapper:modelmapper:1.1.0')
 
 }

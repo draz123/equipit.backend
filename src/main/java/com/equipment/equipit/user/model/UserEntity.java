@@ -1,5 +1,7 @@
 package com.equipment.equipit.user.model;
 
+import com.equipment.equipit.team.model.TeamEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,9 +30,16 @@ public class UserEntity {
     @Column(name = "group_type")
     private GroupType groupType;
 
-    public UserEntity(String email, String password, GroupType groupType) {
+    @ManyToOne
+    private TeamEntity team;
+
+    private String position;
+
+    public UserEntity(String email, String password, GroupType groupType, TeamEntity team, String position) {
         this.email = email;
         this.password = password;
         this.groupType = groupType;
+        this.team = team;
+        this.position = position;
     }
 }
