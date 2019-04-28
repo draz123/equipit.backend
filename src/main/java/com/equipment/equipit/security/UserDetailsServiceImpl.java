@@ -1,7 +1,7 @@
 package com.equipment.equipit.security;
 
-import com.toobok.backend.toobok.user.db.UserRepository;
-import com.toobok.backend.toobok.user.model.UserEntity;
+import com.equipment.equipit.user.db.UserRepository;
+import com.equipment.equipit.user.model.UserEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
