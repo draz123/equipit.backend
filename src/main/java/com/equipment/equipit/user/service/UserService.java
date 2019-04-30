@@ -35,7 +35,6 @@ public class UserService {
             UserEntity savedEntity = userRepository.save(userEntity);
             return UserDTO.builder()
                     .email(savedEntity.getEmail())
-                    .groupType(savedEntity.getGroupType())
                     .id(savedEntity.getId())
                     .build();
         }

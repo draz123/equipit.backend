@@ -24,7 +24,7 @@ public class EquipmentOwnershipEntity {
     private UUID id;
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity userEntity;
+    private UserEntity user;
     @ManyToOne
     @JoinColumn(name = "equipment_id")
     private EquipmentEntity equipment;

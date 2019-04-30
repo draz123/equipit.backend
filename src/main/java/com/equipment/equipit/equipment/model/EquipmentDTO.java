@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -12,7 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class EquipmentDTO {
 
-    private UUID id;
     private String serialNumber;
     private String model;
     private String equipmentGroupId;
@@ -22,5 +22,5 @@ public class EquipmentDTO {
     private String qrCode;
     private String invoice;
     private double price;
-    private EquipmentOwnershipDTO equipmentOwnershipDTO;
+    private List<EquipmentOwnershipDTO > equipmentOwnerships;
 }

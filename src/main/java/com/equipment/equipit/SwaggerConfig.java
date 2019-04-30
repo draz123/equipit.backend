@@ -1,5 +1,6 @@
 package com.equipment.equipit;
 
+import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
@@ -61,7 +63,8 @@ public class SwaggerConfig {
                 .useDefaultResponseMessages(false);
 
         docket = docket.select()
-                .paths(regex(DEFAULT_INCLUDE_PATTERN))
+                .apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
+                .paths(regex("/.*"))
                 .build();
 //        watch.stop();
 //        log.debug("Started Swagger in {} ms", watch.getTotalTimeMillis());
