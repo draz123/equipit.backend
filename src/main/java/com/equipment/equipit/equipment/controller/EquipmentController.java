@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/equipment")
+@RestController
 public class EquipmentController {
 
     private final EquipmentService equipmentService;
@@ -17,7 +17,7 @@ public class EquipmentController {
         this.equipmentService = equipmentService;
     }
 
-    @GetMapping
+    @GetMapping(value = "/equipment")
     public Page<EquipmentDTO> findAll(Pageable pageable) {
         return equipmentService.findAll(pageable);
 

@@ -5,17 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Table(name = "equipment")
 public class EquipmentEntity {
 
     @Id
@@ -26,6 +25,7 @@ public class EquipmentEntity {
     private UUID id;
     private String serialNumber;
     @ManyToOne
+    @JoinColumn(name = "equipment_group_id", nullable = false)
     private EquipmentGroupEntity equipmentGroupEntity;
     private String model;
     private String checklistJamcloudEnrollment;
@@ -35,7 +35,7 @@ public class EquipmentEntity {
     private String invoice;
     private double price;
 
-    @ManyToOne
-    private EquipmentOwnershipEntity equipmentOwnershipEntity;
+    @OneToMany(mappedBy = "equipment", orphanRemoval = true)
+    private List<EquipmentOwnershipEntity> equipmentOwnerships;
 
 }

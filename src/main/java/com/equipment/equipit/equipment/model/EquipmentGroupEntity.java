@@ -1,5 +1,8 @@
 package com.equipment.equipit.equipment.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -7,7 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "equipment_group")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class EquipmentGroupEntity {
 
     @Id
@@ -16,5 +22,6 @@ public class EquipmentGroupEntity {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
+    private String name;
 
 }

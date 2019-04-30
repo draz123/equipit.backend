@@ -1,7 +1,6 @@
 package com.equipment.equipit.user.model;
 
 import com.equipment.equipit.team.model.TeamEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,6 +30,7 @@ public class UserEntity {
     private GroupType groupType;
 
     @ManyToOne
+    @JoinColumn(name = "team_id")
     private TeamEntity team;
 
     private String position;
